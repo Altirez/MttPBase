@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".oldversion.ChooseRecordActivity" android:orientation="vertical">
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:entries="@array/table_type" android:layout_margin="10dp"/>
+    <com.logistic.paperrose.mttp.oldversion.search.DelayedFilteringField
+        android:layout_width="match_parent"
+        android:id="@+id/simpleSearchField"
+        android:textColor="@color/secondary_color"
+        android:background="@drawable/light_grey_background"
+        android:drawableRight="@drawable/nd_search"
+        android:layout_height="55dp"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:hint="Номер"
+        android:inputType="text"
+        android:imeOptions="actionSearch"/>
+    <EditText
+        android:layout_width="match_parent" android:textSize="20dp"
+        android:background="@drawable/main_background"
+        android:id="@+id/jpegName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_margin="10dp"
+        android:layout_height="55dp" android:hint="Имя сохраняемого файла"/>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:id="@+id/idDocNomenclature"
+        android:textColor="@color/secondary_color"
+        android:background="@drawable/main_background"
+        android:layout_height="55dp"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_margin="10dp"
+        android:hint="Тип документа"
+        android:inputType="text"
+        android:imeOptions="actionSearch"/>
+
+</LinearLayout>

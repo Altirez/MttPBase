@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="70dp" android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:paddingRight="3dp"
+    android:background="@color/top_color">
+    <LinearLayout
+        android:layout_width="15dp"
+        android:layout_height="60dp"></LinearLayout>
+    <ImageButton
+            android:layout_width="60dp" android:id="@+id/backButton" android:background="@null" android:layout_gravity="center"
+            android:layout_height="40dp" android:scaleType="fitCenter" android:src="@drawable/nd_back"  />
+    <LinearLayout
+        android:layout_width="15dp"
+        android:layout_height="60dp"></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
+        <View
+            android:layout_width="match_parent" android:id="@+id/pushMenuLine"
+            android:layout_height="1dp" android:background="@null">
+        </View>
+        <TextView
+            android:layout_width="match_parent" android:gravity="center_vertical" android:id="@+id/statusText"
+            android:layout_height="match_parent" android:textSize="19dp" android:textColor="@color/secondary_color" android:fontFamily="sans-serif" />
+    </LinearLayout>
+    <ImageButton
+        android:layout_width="50dp" android:id="@+id/fave_btn" android:visibility="gone"
+        android:layout_height="30dp" android:scaleType="fitCenter" android:background="@null"
+        android:layout_gravity="center" android:src="@drawable/fave_icon_canavara"/>
+    <ImageButton
+        android:layout_width="50dp" android:id="@+id/save_btn" android:visibility="gone"
+        android:layout_height="30dp" android:scaleType="fitCenter" android:background="@null"
+        android:layout_gravity="center" android:src="@drawable/save_icon_canavara"/>
+    <ImageButton
+        android:layout_width="50dp" android:id="@+id/menu_btn"
+        android:layout_height="30dp" android:scaleType="fitCenter" android:background="@null"
+        android:layout_gravity="center" android:src="@drawable/menu_icon_canavara"/>
+</LinearLayout>

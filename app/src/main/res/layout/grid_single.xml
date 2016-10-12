@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/back_pic"
+        android:background="@color/even_color"
+        android:scaleType="centerCrop"
+        android:layout_alignTop="@+id/grid"
+        android:layout_alignBottom="@id/grid"
+        android:layout_alignLeft="@id/grid"
+        android:layout_alignRight="@id/grid"/>
+    <LinearLayout
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="wrap_content" android:id="@+id/grid" android:background="@drawable/table_cell_transparent">
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="80dp"  android:id="@+id/s2" android:orientation="horizontal" android:gravity="center">
+                <LinearLayout
+                    android:layout_width="15dp"
+                    android:layout_height="80dp"></LinearLayout>
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_height="60dp">
+                    <ImageView android:layout_gravity="center"
+                        android:id="@+id/grid_image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" >
+                    </ImageView>
+                    <LinearLayout
+                        android:layout_width="60dp" android:id="@+id/cnt_circle"
+                        android:layout_height="60dp" android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content" android:id="@+id/grid_cnt"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/secondary_color"
+                            android:fontFamily="sans-serif-light"
+                            android:layout_gravity="center"
+                            android:text="" android:textSize="17dp" android:visibility="gone"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="15dp"
+                    android:layout_height="80dp"></LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1">
+                <TextView android:layout_gravity="center_vertical" android:gravity="center_vertical"
+                    android:id="@+id/grid_text"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp" android:textColor="@color/dark_text_color"
+                    android:textSize="17dp" >
+                </TextView>
+            </LinearLayout>
+            <LinearLayout android:layout_width="70dp"
+                android:layout_height="80dp" android:id="@+id/s1">
+                <TextView
+                    android:layout_width="50dp" android:id="@+id/grid_cnt2"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/secondary_color"
+                    android:layout_gravity="center" android:textStyle="bold"
+                    android:text="" android:textSize="18dp" android:visibility="gone"/>
+            </LinearLayout>
+    </LinearLayout>
+</RelativeLayout >

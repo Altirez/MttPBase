@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference android:title="Добавить поле"
+        android:key="button"
+        android:summary=""/>
+
+    <PreferenceCategory
+        android:title="Поля"
+        android:key="pc_key">
+    </PreferenceCategory>
+</PreferenceScreen>

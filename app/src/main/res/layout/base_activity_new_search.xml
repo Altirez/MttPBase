@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    tools:context=".oldversion.newsearch.NewSearchActivity">
+    <LinearLayout android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical" android:layout_weight="1">
+        <LinearLayout android:orientation="vertical" android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1">
+            <com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/chosenPushFieldsList" android:layout_weight="1">
+            </com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/addFields" android:background="@drawable/grey_background" android:text="ДОБАВИТЬ ПОЛЯ"/>
+
+            <LinearLayout android:visibility="gone"
+                android:focusable="true" android:focusableInTouchMode="true"
+                android:layout_width="0px" android:layout_height="0px"/>
+            <com.logistic.paperrose.mttp.oldversion.utils.ExtendedEditText
+                android:visibility="gone"
+                android:id="@+id/search"
+                android:nextFocusUp="@id/search" android:nextFocusLeft="@id/search"
+                android:layout_width="fill_parent"
+                android:textSize="20dp"
+                android:textColor="@color/secondary_color"
+                android:drawableRight="@drawable/nd_search"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_background"
+                android:hint="Найти в свойствах"
+                android:paddingBottom="5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp"/>
+
+            <ListView android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/pushFieldsList" android:layout_weight="1">
+            </ListView>
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="match_parent" android:layout_gravity="end"
+                android:layout_height="wrap_content" android:text="Найти записи"
+                android:background="@drawable/grey_background"
+                 />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

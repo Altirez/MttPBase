@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".oldversion.results.DownloadDocuments">
+        <LinearLayout
+            android:layout_width="match_parent" android:orientation="horizontal" android:background="@drawable/main_background2"
+            android:layout_height="65dp" android:id="@+id/makePhoto" android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp" android:src="@drawable/nd_photo" android:padding="5dp" />
+            <TextView android:padding="5dp" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:textSize="19dp"
+                android:layout_height="match_parent" android:text="СФОТОГРАФИРОВАТЬ" />
+        </LinearLayout>
+     <!--   <Button
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/[your background image here]"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сфотографировать"
+            android:background="@android:color/transparent" android:id="@+id/makePhoto"/> -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ListView android:layout_weight="1"
+                android:id="@+id/documentsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+</LinearLayout>

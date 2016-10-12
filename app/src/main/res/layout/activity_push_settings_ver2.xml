@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".oldversion.settings.PushSettingsActivity" android:background="@drawable/main_background">
+
+   <!-- <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавить поле" android:background="#6c322e" android:textColor="#FFFFFF"
+        android:id="@+id/addNew" />-->
+
+    <LinearLayout
+        android:focusable="true" android:focusableInTouchMode="true"
+        android:layout_width="0px" android:layout_height="0px"/>
+
+    <com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:paddingBottom="10dp"
+        android:id="@+id/chosenPushFieldsList" android:layout_weight="1">
+    </com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/addFields" android:background="@drawable/grey_background" android:text="Добавить поля"/>
+    <com.logistic.paperrose.mttp.oldversion.utils.ExtendedEditText
+        android:id="@+id/search"
+        android:nextFocusUp="@id/search" android:nextFocusLeft="@id/search"
+        android:layout_width="fill_parent" android:visibility="gone"
+        android:textSize="20dp"
+        android:textColor="@color/secondary_color"
+        android:drawableRight="@drawable/nd_search"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_margin="10dp"
+        android:hint="Найти в свойствах"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" android:visibility="gone"
+        android:id="@+id/pushFieldsList" android:layout_weight="1">
+    </ListView>
+ <!--   <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сохранить изменения"  android:background="#6c322e" android:textColor="#FFFFFF"
+        android:id="@+id/saveChangesButton"/>-->
+
+</LinearLayout>

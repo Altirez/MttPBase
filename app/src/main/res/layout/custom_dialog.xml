@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/main_color">
+    <com.logistic.paperrose.mttp.oldversion.utils.ExtendedEditText
+        android:id="@+id/search"
+        android:nextFocusUp="@id/search" android:nextFocusLeft="@id/search"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        android:textColor="@color/secondary_color"
+        android:drawableRight="@drawable/nd_search"
+        android:layout_height="wrap_content"
+        android:background="@drawable/light_grey_background"
+        android:layout_margin="10dp"
+        android:hint="НАЙТИ В СВОЙСТВАХ"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"/>
+    <RelativeLayout android:layout_gravity="center_vertical" android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp" >
+
+      <!--  <Button
+            android:layout_width="match_parent" android:id="@+id/selectAll" android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Выбрать все"
+            android:layout_height="45dp" android:background="@drawable/grey_background"
+            />-->
+
+        <CheckBox android:id="@+id/selectAll" android:button="@null" android:textSize="20dp" android:text="Выбрать все"
+            android:drawableRight="@null" android:textColor="@color/secondary_color" android:gravity="center"
+            android:layout_width="match_parent" android:checked="false"
+            android:background="@drawable/grey_background"
+            android:layout_height="45dp"/>
+    </RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/alertFieldsList" android:layout_weight="1"/>
+
+    <Button
+        android:layout_width="match_parent" android:id="@+id/okButton" android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="45dp" android:background="@drawable/grey_background"
+        android:text="Ок" />
+</LinearLayout>

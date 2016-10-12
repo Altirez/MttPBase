@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".oldversion.MainActivity" android:background="@color/even_color">
+
+        <ImageView android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:src="@null"  android:scaleType="fitCenter" android:layout_margin="4dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                android:divider="#dcdcdc"
+                android:id="@+id/buttons_grid">
+            </ListView>
+        </LinearLayout>
+
+        <!--<GridView
+            android:numColumns="auto_fit"
+            android:gravity="center"
+
+            android:columnWidth="130dp"
+            android:stretchMode="columnWidth"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+
+            android:id="@+id/buttons_grid"
+            />-->
+ <!--   <LinearLayout android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent" android:layout_weight="1"
+            android:layout_height="70dp">
+            <ImageButton android:layout_marginLeft="2dp"
+                android:id="@+id/push"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:src="@drawable/pushes_blue"
+                android:scaleType="fitStart" android:layout_weight="1"
+                android:background="@drawable/button_style" android:gravity="center" />
+
+        </RelativeLayout>
+
+        <ImageButton android:layout_marginTop="10dp"
+            android:id="@+id/search"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/search_blue"
+            android:scaleType="fitCenter" android:layout_weight="1"
+            android:background="@drawable/button_style" android:gravity="center" />
+        <ImageButton android:layout_weight="1" android:layout_marginRight="2dp"
+            android:id="@+id/contact"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:scaleType="fitEnd"
+
+            android:src="@drawable/contacts_blue"
+            android:background="@drawable/button_style" android:gravity="center"/>
+    </LinearLayout>-->
+ <!--   <TextView android:layout_alignParentBottom="true" android:layout_marginBottom="41dp" android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content" android:textStyle="bold" android:padding="2dp" android:gravity="center"
+        android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+        android:text="0"
+        android:textColor="@color/main_color"
+        android:id="@+id/counter"
+        android:textSize="15dp" android:background="@drawable/rounded_textview"  />
+   <LinearLayout android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button android:layout_marginLeft="2dp"
+            android:id="@+id/angry_btn"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:scaleType="fitStart" android:layout_weight="1"
+            android:background="#00000000"
+            android:shadowColor="#A8A8A8"  android:gravity="start"/>
+
+        <Button android:layout_weight="1" android:layout_marginRight="2dp"
+            android:id="@+id/angry_btn3"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:scaleType="fitCenter"
+            android:background="#00000000"
+            android:gravity="end"/>
+        <Button android:layout_weight="1" android:layout_marginRight="2dp"
+            android:id="@+id/angry_btn2"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:scaleType="fitEnd"
+            android:background="#00000000"
+            android:gravity="end"/>
+    </LinearLayout>
+    <com.example.paperrose.mttp.search.DelayedFilteringField
+        android:layout_width="match_parent"
+        android:id="@+id/simpleSearchField"
+        android:textColor="#9b191a"
+        android:background="@drawable/main_background"
+        android:padding="2dp"
+        android:layout_height="30dp"
+        android:textSize="20dp"
+        android:hint="Простой поиск" android:layout_margin="10dp"
+        android:inputType="text"
+        android:imeOptions="actionSearch"/>-->
+</RelativeLayout>

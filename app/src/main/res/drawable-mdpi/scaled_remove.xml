@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/remove_small_blue"
+    android:scaleHeight="20%"
+    android:scaleWidth="20%" >
+
+</scale>

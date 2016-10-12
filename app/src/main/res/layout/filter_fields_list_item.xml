@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:id="@+id/filterItem" android:background="#FFF"
+    >
+    <ImageButton android:scaleType="fitCenter"
+        android:id="@+id/deleteButton"
+        android:layout_width="20dp" android:layout_marginTop="5dp"
+        android:layout_height="20dp" android:src="@drawable/remove_beautiful"
+        android:background="#00FFFFFF" android:visibility="visible"/>
+    <LinearLayout android:gravity="center_vertical"
+        android:orientation="horizontal" android:id="@+id/id1"
+        android:layout_width="match_parent" android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <com.logistic.paperrose.mttp.oldversion.search.DelayedFilteringField
+            android:id="@+id/columnKey"
+            android:inputType="textCapSentences"
+            android:background="@drawable/light_grey_background"
+            android:textColor="@color/secondary_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:imeOptions="flagNoExtractUi|actionSearch"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="16dp"
+            android:visibility="gone"/>
+        </LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent" android:layout_weight="1"
+        android:layout_height="wrap_content">
+            <com.logistic.paperrose.mttp.oldversion.search.DelayedFilteringField
+                android:layout_width="match_parent" android:id="@+id/columnSingleValue"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_grey_background"
+                android:textColor="@color/secondary_color"
+                android:textSize="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" android:visibility="gone"/>
+            <LinearLayout android:id="@+id/columnDoubleValue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:visibility="gone">
+                <EditText android:id="@+id/fromValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_color"
+                    android:textColor="@color/secondary_color"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:text="_" android:background="#FFF"
+                    android:textColor="@color/secondary_color" android:textStyle="bold" android:layout_marginTop="10dp"/>
+                <EditText android:id="@+id/toValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_color"
+                    android:textColor="@color/secondary_color"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" android:layout_weight="1"/>
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

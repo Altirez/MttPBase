@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_margin="1dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/docsButton" android:text="Документы"
+
+        android:background="@drawable/grey_background" android:textColor="@color/dark_text_color"/>
+    <ListView android:id="@+id/searchResult" android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:divider="@null">
+    </ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/changeStatus"
+        android:layout_margin="1dp"
+        android:background="@drawable/grey_background" android:textColor="@color/dark_text_color"
+        android:layout_height="wrap_content" android:text="Изменить статус →"/>
+    <Button
+        android:layout_width="match_parent" android:visibility="gone" android:id="@+id/saveChangesButton" android:textColor="@color/secondary_color"
+        android:layout_height="wrap_content" android:background="@null" android:textSize="20dp" android:text="Сохранить изменения"/>
+</LinearLayout>

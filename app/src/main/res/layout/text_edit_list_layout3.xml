@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="horizontal" >
+    <LinearLayout android:orientation="vertical" android:layout_gravity="center_vertical"
+        android:layout_width="40dp"
+        android:layout_height="1dp">
+    </LinearLayout>
+    <RelativeLayout android:layout_gravity="center_vertical"  android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp" >
+        <CheckBox android:id="@+id/field" android:button="@null" android:textSize="20dp"
+            android:drawableRight="@drawable/checkbox_style"  android:textColor="@color/dark_text_color"
+            android:layout_width="match_parent" android:checked="false"
+            android:layout_height="wrap_content"/>
+        <!-- <TextView android:id="@+id/field"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" android:textSize="15dp" android:gravity="center_vertical" android:height="25dp" android:text="Название поля" android:hint="Название поля" android:padding="5dp"  android:background="#FFFFFF" android:textColor="#6c322e">
+
+         </TextView>-->
+    </RelativeLayout>
+
+</LinearLayout>

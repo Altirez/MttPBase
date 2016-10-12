@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".oldversion.pushes.MyActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical" android:background="@color/even_color">
+
+        <LinearLayout android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="@string/clear" />
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="1dp" android:visibility="gone" android:id="@+id/display"/>
+        </LinearLayout>
+        <LinearLayout
+            android:focusable="true" android:focusableInTouchMode="true"
+            android:layout_width="0px" android:layout_height="0px"/>
+        <Spinner android:visibility="gone"
+            android:id="@+id/type_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/search"
+            android:nextFocusUp="@id/search" android:nextFocusLeft="@id/search"
+            android:layout_width="fill_parent"
+            android:textSize="20dp"
+            android:textColor="@color/secondary_color"
+            android:drawableRight="@drawable/nd_search"
+            android:layout_height="wrap_content"
+            android:background="@drawable/light_grey_background"
+            android:layout_margin="10dp"
+            android:hint="НАЙТИ В СООБЩЕНИИ"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"  android:textColor="@color/dark_text_color"
+            android:textStyle="bold"  android:background="@drawable/grey_background" android:id="@+id/prev" android:visibility="visible" android:textSize="15dp" android:text="Показать предыдущие записи"/>
+
+        <ListView android:id="@+id/pushList" android:layout_weight="1"
+            android:dividerHeight="15dp"
+            android:layout_width="match_parent"
+            android:divider="@color/even_color"
+            android:layout_height="wrap_content">
+
+        </ListView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp" android:id="@+id/next" android:background="@drawable/grey_background_bottom" android:textColor="@color/dark_text_color"
+            android:textStyle="bold" android:visibility="visible" android:textSize="15dp" android:text="Показать следующие записи"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".oldversion.pushes.MyActivity" >
+    <item android:id="@+id/allItem"
+        android:title="Все"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/containersItem"
+        android:title="Грузы"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/declarationsItem"
+        android:title="Декларации"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/messagesItem"
+        android:title="Сообщения"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom" />
+</menu>
