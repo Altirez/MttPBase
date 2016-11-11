@@ -7,7 +7,7 @@
         android:layout_height="150dp" android:gravity="center">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="120dp" android:layout_gravity="center" android:src="@drawable/canavara_red_big" />
+            android:layout_height="120dp" android:layout_gravity="center" android:src="@drawable/tl_main" />
     </LinearLayout>
 </LinearLayout>
 

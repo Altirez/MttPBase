@@ -29,7 +29,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:scaleType="fitCenter"
-                    android:src="@drawable/canavara_red_big"/>
+                    android:src="@drawable/tl_main"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/email_login_form"

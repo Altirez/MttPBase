@@ -23,10 +23,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.logistic.paperrose.mttp.R;
 import com.logistic.paperrose.mttp.oldversion.BaseLogisticActivity;
 import com.logistic.paperrose.mttp.oldversion.LoginActivity;
-import com.logistic.paperrose.mttp.oldversion.MainActivity;
-import com.logistic.paperrose.mttp.R;
 import com.logistic.paperrose.mttp.oldversion.search.TripleTableField;
 import com.logistic.paperrose.mttp.oldversion.settings.ApplicationParameters;
 import com.logistic.paperrose.mttp.oldversion.utils.JSONParser;
@@ -667,13 +666,13 @@ public class SearchResults extends BaseLogisticActivity {
             ApplicationParameters.trafficDocuments.clear();
         ApplicationParameters.tempResults = null;
         ApplicationParameters.lastResults = null;
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+       // startActivity(intent);
+        super.onBackPressed();
     }
 
     public class HeaderView extends TextView {
-
 
         public boolean up = true;
         public HeaderView(Context context) {

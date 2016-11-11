@@ -1,65 +1,64 @@
 package com.logistic.paperrose.mttp.oldversion.newsearch;
 
         import android.app.AlertDialog;
-        import android.app.Dialog;
-        import android.content.Context;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.os.AsyncTask;
-        import android.os.Bundle;
-        import android.text.Editable;
-        import android.text.TextWatcher;
-        import android.util.Pair;
-        import android.view.KeyEvent;
-        import android.view.Menu;
-        import android.view.View;
-        import android.view.ViewTreeObserver;
-        import android.view.inputmethod.EditorInfo;
-        import android.view.inputmethod.InputMethodManager;
-        import android.widget.AdapterView;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.ListView;
-        import android.widget.ProgressBar;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Pair;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.logistic.paperrose.mttp.oldversion.LoginActivity;
-        import com.logistic.paperrose.mttp.oldversion.MainActivity;
-        import com.logistic.paperrose.mttp.R;
-        import com.logistic.paperrose.mttp.oldversion.clients.SettingsType;
-        import com.logistic.paperrose.mttp.oldversion.dragndrop.DragListener;
-        import com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView;
-        import com.logistic.paperrose.mttp.oldversion.dragndrop.DropListener;
-        import com.logistic.paperrose.mttp.oldversion.dragndrop.RemoveListener;
-        import com.logistic.paperrose.mttp.oldversion.results.SearchResults;
-        import com.logistic.paperrose.mttp.oldversion.search.DelayedFilteringField;
-        import com.logistic.paperrose.mttp.oldversion.search.TripleTableField;
-        import com.logistic.paperrose.mttp.oldversion.settings.AlertFieldsAdapter;
-        import com.logistic.paperrose.mttp.oldversion.settings.ApplicationParameters;
-        import com.logistic.paperrose.mttp.oldversion.settings.Bookmark;
-        import com.logistic.paperrose.mttp.oldversion.settings.ChosenFieldsAdapter;
-        import com.logistic.paperrose.mttp.oldversion.settings.ChosenFieldsAdapterVer2;
-        import com.logistic.paperrose.mttp.oldversion.utils.ConnectionActivity;
-        import com.logistic.paperrose.mttp.oldversion.utils.ExtendedEditText;
-        import com.logistic.paperrose.mttp.oldversion.utils.JSONParser;
-        import com.logistic.paperrose.mttp.oldversion.utils.JSONStreamReader;
-        import com.google.gson.Gson;
-        import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.logistic.paperrose.mttp.R;
+import com.logistic.paperrose.mttp.oldversion.LoginActivity;
+import com.logistic.paperrose.mttp.oldversion.clients.SettingsType;
+import com.logistic.paperrose.mttp.oldversion.dragndrop.DragListener;
+import com.logistic.paperrose.mttp.oldversion.dragndrop.DragNDropListView;
+import com.logistic.paperrose.mttp.oldversion.dragndrop.DropListener;
+import com.logistic.paperrose.mttp.oldversion.dragndrop.RemoveListener;
+import com.logistic.paperrose.mttp.oldversion.results.SearchResults;
+import com.logistic.paperrose.mttp.oldversion.search.DelayedFilteringField;
+import com.logistic.paperrose.mttp.oldversion.search.TripleTableField;
+import com.logistic.paperrose.mttp.oldversion.settings.AlertFieldsAdapter;
+import com.logistic.paperrose.mttp.oldversion.settings.ApplicationParameters;
+import com.logistic.paperrose.mttp.oldversion.settings.Bookmark;
+import com.logistic.paperrose.mttp.oldversion.settings.ChosenFieldsAdapter;
+import com.logistic.paperrose.mttp.oldversion.settings.ChosenFieldsAdapterVer2;
+import com.logistic.paperrose.mttp.oldversion.utils.ConnectionActivity;
+import com.logistic.paperrose.mttp.oldversion.utils.ExtendedEditText;
+import com.logistic.paperrose.mttp.oldversion.utils.JSONParser;
+import com.logistic.paperrose.mttp.oldversion.utils.JSONStreamReader;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.io.IOException;
-        import java.io.UnsupportedEncodingException;
-        import java.lang.reflect.Type;
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.Iterator;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class NewSearchActivity extends ConnectionActivity {
 
@@ -184,9 +183,10 @@ public class NewSearchActivity extends ConnectionActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //startActivity(intent);
+        super.onBackPressed();
     }
 
     @Override

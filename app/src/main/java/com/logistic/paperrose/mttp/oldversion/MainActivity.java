@@ -92,7 +92,7 @@ public class MainActivity extends ConnectionActivity implements ExecutionHandler
     @Override
     public void onBackPressed() {
         if (currentNode != null) {
-            if (currentNode.parent != null) {
+            if (currentNode.parent != null ) {
 
                 setAdapter(new MainScreenViewAdapter(MainActivity.this, chooseNodes(currentNode.parent.getChildNodes())));
                 setupActionBarWithText(currentNode.parent.description);
@@ -102,6 +102,7 @@ public class MainActivity extends ConnectionActivity implements ExecutionHandler
                 setRootNodes();
                 ApplicationParameters.lastItem = null;
                 setupActionBar();
+                //super.onBackPressed();
             }
         } else {
             super.onBackPressed();

@@ -39,5 +39,6 @@
         <item>Декларации</item>
     </string-array>
     <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+    <string name="title_activity_declaration_editor">Edit declaration</string>
 
 </resources>

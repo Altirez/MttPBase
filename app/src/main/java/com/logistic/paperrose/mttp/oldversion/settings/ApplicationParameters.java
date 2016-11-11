@@ -58,24 +58,25 @@ public class ApplicationParameters {
     public static HashMap<String, ArrayList<TripleTableField>> eds = new HashMap<String, ArrayList<TripleTableField>>();
     public static BaseLogisticActivity activity = null;
     public static final String HISTORY_FILENAME = "93.185.177.75";
+    public static final String DEBUG_SERVER = "127.0.0.1:4343";
     public static int currentLength = 0;
-    /*89.255.112.196 ТББ
+    //89.255.112.196 ТББ 185.97.165.7
     public static boolean isCanavara = false;
     public static boolean isTBB = true;
     public static final String SERVER_ADDRESS = "185.97.165.7";
-    public static final String MAIN_DOMAIN = SERVER_ADDRESS + "/api/public/index.php";
-    public static final String docString = "/21f64da1e5792c8295b964d159a14491";*/
+    public static final String MAIN_DOMAIN = DEBUG_SERVER + "/api/public/index.php";
+    public static final String docString = "/21f64da1e5792c8295b964d159a14491";
 
-    /*"212.68.8.90" канавара*/
+    /*"212.68.8.90" канавара
     public static boolean isCanavara = true;
-    public static boolean isTBB = false;
+        public static boolean isTBB = false;
     public static final String SERVER_ADDRESS = "212.68.8.90";
     public static final String MAIN_DOMAIN = SERVER_ADDRESS + "/api/index.php";
     public static final String docString = "/documents";
     /*smart-voip.ru:8088 транслайн
     public static boolean isCanavara = false;
     public static boolean isTBB = false;
-    public static final String SERVER_ADDRESS = "smart-voip.ru:8088";
+    public static final String SERVER_ADDRESS = "109.236.110.5:8088/";
     public static final String MAIN_DOMAIN = SERVER_ADDRESS + "/web/api/public/index.php";
     public static final String docString = "/documents";
     /**/
@@ -472,12 +473,16 @@ public class ApplicationParameters {
                 ApplicationParameters.declarationFields.add(new TripleTableField(obj.getString("NAME"),obj.getString("TITLE"),obj.getString("TYPE"),Integer.parseInt(obj.getString("ID"))));
                 if (obj.getString("TYPE").equals("dict")) {
                     ApplicationParameters.declarationDictionaries.add(new TripleTableField(obj.getString("NAME"),obj.getString("REAL_TABLE_NAME"),obj.getString("FIELD_TABLE"),obj.getString("DICT_ID_NAME"),Integer.parseInt(obj.getString("ID")) ));
+
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
+        ArrayList dbg_arr = ApplicationParameters.declarationDictionaries;
+
      /*   if (isCanavara) {
             chosenDeclarationReportsFields.clear();
             chosenDeclarationReportsSingleFields.clear();

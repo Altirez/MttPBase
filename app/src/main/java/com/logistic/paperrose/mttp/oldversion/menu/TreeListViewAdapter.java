@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.logistic.paperrose.mttp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -21,10 +22,13 @@ public class TreeListViewAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     public ArrayList<ItemNode> objects;
+    public Picasso mPicasso;
 
     public TreeListViewAdapter(Context context, int layoutResourceID, ArrayList<ItemNode> products) {
         ctx = context;
         objects = products;
+        mPicasso = Picasso.with(ctx.getApplicationContext());
+        //mPicasso.setIndicatorsEnabled(true);
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -106,11 +110,12 @@ public class TreeListViewAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.tree_node_item, null);
         }
 
-
         ImageView imageView = (ImageView) view.findViewById(R.id.topLevelNodeImage);
-        //imageView.setVisibility((p.getItemNodeLevel() == 0) ? View.VISIBLE : View.GONE);
+        mPicasso.load(p.image).into(imageView);
         imageView.setVisibility((p.getItemNodeLevel() == 0) ? View.VISIBLE : View.GONE);
-        imageView.setImageResource(p.image);
+
+        //imageView.setVisibility((p.getItemNodeLevel() == 0) ? View.VISIBLE : View.GONE);
+        //imageView.setImageResource(p.image);
 
         // заполняем View в пункте списка данными из товаров: наименование, цена
         // и картинка

@@ -547,8 +547,9 @@ public class BaseSearchResults extends BaseLogisticActivity {
         ApplicationParameters.tempResults = null;
         ApplicationParameters.lastResults = null;
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //startActivity(intent);
+        super.onBackPressed();
     }
 
     protected void formTable(JSONArray jsonArray) {

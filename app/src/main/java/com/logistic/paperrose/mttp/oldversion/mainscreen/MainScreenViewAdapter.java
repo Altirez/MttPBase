@@ -64,6 +64,9 @@ public class MainScreenViewAdapter extends BaseAdapter {
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolderItem viewHolder;
+        Picasso mPicasso = Picasso.with(activity.getApplicationContext());
+        //mPicasso.setIndicatorsEnabled(true);
+
         Typeface typeface = Typeface.createFromAsset(activity.getAssets(), "Roboto-Light.ttf");
         Typeface typeface2 = Typeface.createFromAsset(activity.getAssets(), "Roboto-Regular_0.ttf");
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -85,10 +88,14 @@ public class MainScreenViewAdapter extends BaseAdapter {
             viewHolder.all = (LinearLayout)view.findViewById(R.id.grid);
             viewHolder.imageViewItem = (ImageView)view.findViewById(R.id.grid_image);
             viewHolder.imageBackItem = (ImageView)view.findViewById(R.id.back_pic);
+
+            //mPicasso.load(R.id.grid_image).into(viewHolder.imageViewItem);
+            //mPicasso.load(R.id.back_pic).into(viewHolder.imageBackItem);
+
             view.setTag(viewHolder);
             view.setTag(R.id.grid_text, viewHolder.textViewItem);
-            view.setTag(R.id.grid_image, viewHolder.imageViewItem);
-            view.setTag(R.id.back_pic, viewHolder.imageBackItem);
+            //view.setTag(R.id.grid_image, viewHolder.imageViewItem);
+            //view.setTag(R.id.back_pic, viewHolder.imageBackItem);
             view.setTag(R.id.grid, viewHolder.all);
             view.setTag(R.id.grid_cnt, viewHolder.cntViewItem);
             viewHolder.all.setClickable(true);
@@ -98,7 +105,11 @@ public class MainScreenViewAdapter extends BaseAdapter {
                 public void onClick(View view2) {
                     int num = (Integer)view2.getTag();
                     activity.currentNode = getItem(num);
-                    if (activity.currentNode.childNodes.size() > 0 && !activity.currentNode.key.equals("bookmark_entity") && !activity.currentNode.key.equals("cont_status") && !activity.currentNode.key.equals("gtd_status")) {
+                    if (activity.currentNode.childNodes.size() > 0 &&
+                            !activity.currentNode.key.equals("bookmark_entity") &&
+                            !activity.currentNode.key.equals("cont_status") &&
+                            !activity.currentNode.key.equals("gtd_status")) {
+
                         activity.setAdapter(new MainScreenViewAdapter(activity, chooseNodes(activity.currentNode.childNodes)));
                         activity.setupActionBarWithText(activity.currentNode.description);
                         ApplicationParameters.lastItem = activity.currentNode;
@@ -126,23 +137,17 @@ public class MainScreenViewAdapter extends BaseAdapter {
                 }
             });
 
-
-
-
-
-
-
-
-
         } else {
             viewHolder = (ViewHolderItem) view.getTag();
         }
+
         ItemNode objectItem = getItem(i);
         viewHolder.all.setTag(i);
         viewHolder.textViewItem.setTag(i);
         viewHolder.textViewItem.setMaxLines(5);
         viewHolder.imageViewItem.setTag(i);
         viewHolder.imageBackItem.setTag(i);
+
         if(objectItem != null) {
             viewHolder.textViewItem.setText(objectItem.description);
             if (objectItem.itemNodeLevel == 0) {
@@ -171,12 +176,12 @@ public class MainScreenViewAdapter extends BaseAdapter {
                     ApplicationParameters.cachedImages.put(Integer.toString(objectItem.image), bmp);
                 }
                 viewHolder.imageViewItem.setImageBitmap(bmp);*/
-                Picasso.with(activity)
+                mPicasso
                         .load(objectItem.image)
                         .fit()
                         .into(viewHolder.imageViewItem);
                 if (objectItem.background != -1) {
-                    Picasso.with(activity)
+                    mPicasso
                             .load(objectItem.background)
                             .into(viewHolder.imageBackItem);
                 } else {
@@ -197,6 +202,7 @@ public class MainScreenViewAdapter extends BaseAdapter {
                     activity.setAdapter(new MainScreenViewAdapter(activity, chooseNodes(activity.currentNode.childNodes)));
                     activity.setupActionBarWithText(activity.currentNode.description);
                     ApplicationParameters.lastItem = activity.currentNode;
+
                 } else {
                     activity.nodeAction(activity.currentNode);
                 }

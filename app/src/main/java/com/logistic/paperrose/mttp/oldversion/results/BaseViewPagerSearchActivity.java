@@ -178,6 +178,7 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
             // заголовок
             adb.setTitle("Предупреждение");
+            adb.setTitle("Предупреждение");
             // сообщение
             adb.setMessage("Сохранить изменения в записи?");
             // иконка
@@ -322,11 +323,11 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
         for (int i = 0; i < ApplicationParameters.chosenDeclarationSingleFields.size(); i++) {
             for (int k = 0; k < copy.size(); k++) {
                 String key = copy.get(k);
-                if (ApplicationParameters.chosenDeclarationSingleFields.get(i).getName().equals(key)  && !obj.getString(key).isEmpty()) {
+                if (ApplicationParameters.chosenDeclarationSingleFields.get(i).getName().equals(key) ) {
                     objS.add(
                             new TripleTableField(
                                     ApplicationParameters.getTableFieldNameByKey(key, ApplicationParameters.declarationFields),
-                                    obj.getString(key),
+                                    !obj.getString(key).isEmpty() ? obj.getString(key) : "",
                                     ApplicationParameters.getFieldType(key, ApplicationParameters.declarationFields)
                             )
                     );
@@ -613,9 +614,9 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
             int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
             final TripleTableField field = adapters.get(viewPager.getCurrentItem()).getItem(position);
             String key = ApplicationParameters.getTableFieldKeyByName(field.getName(), ApplicationParameters.declarationFields);
-            if (!(key.contains("DEC_SUM_VALUE1") || key.contains("DEC_SUM_VALUE2") || key.contains("DEC_IS_TS") || key.contains("DEC_LIST_INSPECTOR_CUS_VET_NAME") || key.contains("DEC_NOTE"))) {
-                return;
-            }
+            //if (!(key.contains("DEC_SUM_VALUE1") || key.contains("DEC_SUM_VALUE2") || key.contains("DEC_IS_TS") || key.contains("DEC_LIST_INSPECTOR_CUS_VET_NAME") || key.contains("DEC_NOTE"))) {
+               // return;
+            //}
             if (!adapters.get(viewPager.getCurrentItem()).handMode && key.contains("DEC_SUM_VALUE1")) {
                 return;
             }
@@ -648,9 +649,9 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
                     input.setInputType(InputType.TYPE_CLASS_NUMBER);
                 }
 
-                if (!(key.contains("DEC_SUM_VALUE1") || key.contains("DEC_SUM_VALUE2") || key.contains("DEC_IS_TS") || key.contains("DEC_LIST_INSPECTOR_CUS_VET_NAME") || key.contains("DEC_NOTE"))) {
-                    break;
-                }
+                //if (!(key.contains("DEC_SUM_VALUE1") || key.contains("DEC_SUM_VALUE2") || key.contains("DEC_IS_TS") || key.contains("DEC_LIST_INSPECTOR_CUS_VET_NAME") || key.contains("DEC_NOTE"))) {
+                   // break;
+                //}
                 if (!adapters.get(viewPager.getCurrentItem()).handMode && key.contains("DEC_SUM_VALUE1")) {
                     break;
                 }
@@ -721,7 +722,7 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
                             }
                         });
 
-                        DictionaryAutoCompleteAdapter autoCompleteAdapter = new DictionaryAutoCompleteAdapter(getApplicationContext(), ApplicationParameters.getTableFieldByKey(ApplicationParameters.getTableFieldKeyByName(field.getName(), ApplicationParameters.declarationFields), ApplicationParameters.dictionaries));
+                        DictionaryAutoCompleteAdapter autoCompleteAdapter = new DictionaryAutoCompleteAdapter(getApplicationContext(), ApplicationParameters.getTableFieldByKey(ApplicationParameters.getTableFieldKeyByName(field.getName(), ApplicationParameters.declarationFields), ApplicationParameters.declarationDictionaries));
                         //autoCompleteAdapter.setActivity(NewSearchActivity.this);
                         input.setAdapter(autoCompleteAdapter);
                     }

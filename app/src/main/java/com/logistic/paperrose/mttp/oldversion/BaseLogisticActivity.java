@@ -86,6 +86,7 @@ import java.util.HashMap;
 public class BaseLogisticActivity extends ActionBarActivity {
     public ImageButton bt4;
     public ImageButton bt3;
+
     //отслеживаем все ошибки без Exception и отправляем их на сервер, а далее - в телеграм
     public class TryMe implements Thread.UncaughtExceptionHandler {
 
@@ -113,17 +114,16 @@ public class BaseLogisticActivity extends ActionBarActivity {
 
                 @Override
                 protected void onPostExecute(Void msg) {
-;
+                    ;
                 }
             }.execute(null, null, null);
 
 
-            if(oldHandler != null)
+            if (oldHandler != null)
 
                 oldHandler.uncaughtException(thread, throwable);
         }
     }
-
 
 
     public boolean isFinishAfterClick() {
@@ -179,7 +179,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
     @Override
     public void onPause() {
         super.onPause();
-        unregisterReceiver(mReceiver);
+        //unregisterReceiver(mReceiver);
 
     }
 
@@ -188,61 +188,27 @@ public class BaseLogisticActivity extends ActionBarActivity {
         super.onStop();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+
     LinearLayout ll;
+
     @Override
     public void onResume() {
         super.onResume();
 
-        if (!ScreenReceiver.wasScreenOn && !ApplicationParameters.localPassword.isEmpty()) {
-//блокировка экрана пинкодом. на данный момент не используется
-            ll.setVisibility(View.VISIBLE);
-            // THIS IS WHEN ONRESUME() IS CALLED DUE TO A SCREEN STATE CHANGE
-            final EditText input = new EditText(BaseLogisticActivity.this);
-            input.setInputType(InputType.TYPE_CLASS_NUMBER);
-            checked = false;
-            final AlertDialog.Builder builder = new AlertDialog.Builder(BaseLogisticActivity.this)
-                    .setTitle("Блокировка приложения")
-                    .setMessage("Введите пароль для снятия блокировки")
-                    .setView(input)
-                    .setPositiveButton("Продолжить", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            Editable value = input.getText();
-                            if (value.toString().equals(ApplicationParameters.localPassword)) {
-                                checked = true;
-                            }
-                        }
-                    });
-            final AlertDialog alertClient = builder.create();
-            alertClient.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (!checked) {
-                        alertClient.show();
-                    } else {
-                        ll.setVisibility(View.GONE);
-                    }
-                }
-            });
-            alertClient.show();
 
-            ScreenReceiver.wasScreenOn = true;
-        } else {
-            TextView tv = (TextView)BaseLogisticActivity.this.findViewById(R.id.counter);
-            SharedPreferences unread = getSharedPreferences("UserPreference", 0);
-            int unread_count = unread.getInt("unread", 0);
-            tv.setText(Integer.toString(unread_count));
-            tv.setVisibility(unread_count == 0 ? View.GONE : View.VISIBLE);
-            setDrawerMenu();
+        TextView tv = (TextView) BaseLogisticActivity.this.findViewById(R.id.counter);
+        SharedPreferences unread = getSharedPreferences("UserPreference", 0);
+        int unread_count = unread.getInt("unread", 0);
+        tv.setText(Integer.toString(unread_count));
+        tv.setVisibility(unread_count == 0 ? View.GONE : View.VISIBLE);
+        setDrawerMenu();
 
-            // THIS IS WHEN ONRESUME() IS CALLED WHEN THE SCREEN STATE HAS NOT CHANGED
-        }
+        // THIS IS WHEN ONRESUME() IS CALLED WHEN THE SCREEN STATE HAS NOT CHANGED
 
-        registerReceiver(mReceiver, filter);
+
+        //registerReceiver(mReceiver, filter);
     }
+
     //основная функция, которая отвечает за повторную загрузку результатов поиска и т.д.
     public void refreshRequest() {
 
@@ -276,7 +242,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         setContentView(R.layout.activity_base_logistic);
 
 
-        ll = (LinearLayout)findViewById(R.id.hiddenScreen);
+        ll = (LinearLayout) findViewById(R.id.hiddenScreen);
         setTestMenu();
         setContent();
         setParams();
@@ -293,10 +259,10 @@ public class BaseLogisticActivity extends ActionBarActivity {
         myDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View view, float v) {
-                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity)BaseLogisticActivity.this).checkChanges()) {
+                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity) BaseLogisticActivity.this).checkChanges()) {
 //                    myDrawerLayout.closeDrawer(myDrawerList);
                 }
-               // float moveFactor = (myDrawerLayer.() * v);
+                // float moveFactor = (myDrawerLayer.() * v);
 
                 /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
                 {
@@ -332,30 +298,27 @@ public class BaseLogisticActivity extends ActionBarActivity {
 
             }
         });
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        mReceiver = new ScreenReceiver(); //не используется
-        registerReceiver(mReceiver, filter);
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        //filter.addAction(Intent.ACTION_SCREEN_OFF);
+        //mReceiver = new ScreenReceiver(); //не используется
+        //registerReceiver(mReceiver, filter);
+        //View view = this.getCurrentFocus();
+        //if (view != null) {
+            //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            //imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        //}
         // YOUR CODE
     }
+
     IntentFilter filter;
     public BroadcastReceiver mReceiver;
 
 
-
-
-
-
     public void setupActionBar() {
         //final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
-      //          R.layout.action_bar_layout,
-      //          null);
+        //          R.layout.action_bar_layout,
+        //          null);
         try {
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             actionBar.hide();
@@ -369,18 +332,18 @@ public class BaseLogisticActivity extends ActionBarActivity {
         } catch (Exception e) {
 
         }
-       // actionBar.setDisplayShowTitleEnabled(false);
-       // actionBar.setDisplayShowHomeEnabled(false);
-       // actionBar.setDisplayShowCustomEnabled(true);
-     //   android.support.v7.app.ActionBar.LayoutParams layoutParams = new  android.support.v7.app.ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
-     //           ActionBar.LayoutParams.MATCH_PARENT);
-     //   layoutParams.gravity = Gravity.CENTER_HORIZONTAL|Gravity.CENTER_HORIZONTAL;
-     //   actionBar.setCustomView(actionBarLayout,layoutParams);
+        // actionBar.setDisplayShowTitleEnabled(false);
+        // actionBar.setDisplayShowHomeEnabled(false);
+        // actionBar.setDisplayShowCustomEnabled(true);
+        //   android.support.v7.app.ActionBar.LayoutParams layoutParams = new  android.support.v7.app.ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+        //           ActionBar.LayoutParams.MATCH_PARENT);
+        //   layoutParams.gravity = Gravity.CENTER_HORIZONTAL|Gravity.CENTER_HORIZONTAL;
+        //   actionBar.setCustomView(actionBarLayout,layoutParams);
         try {
             findViewById(R.id.starterAB).setVisibility(View.VISIBLE);
             findViewById(R.id.textAB).setVisibility(View.GONE);
-            final LinearLayout actionBarLayout = (LinearLayout)findViewById(R.id.starterAB);
-            ImageButton bt = (ImageButton)actionBarLayout.findViewById(R.id.menu_btn);
+            final LinearLayout actionBarLayout = (LinearLayout) findViewById(R.id.starterAB);
+            ImageButton bt = (ImageButton) actionBarLayout.findViewById(R.id.menu_btn);
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -415,23 +378,23 @@ public class BaseLogisticActivity extends ActionBarActivity {
         } catch (Exception e) {
 
         }
-       // actionBar.setDisplayShowTitleEnabled(false);
-       // actionBar.setDisplayShowHomeEnabled(false);
+        // actionBar.setDisplayShowTitleEnabled(false);
+        // actionBar.setDisplayShowHomeEnabled(false);
 
         //actionBar.setDisplayShowCustomEnabled(true);
         //actionBar.setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_USE_LOGO);
-      //  android.support.v7.app.ActionBar.LayoutParams layoutParams = new  android.support.v7.app.ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
-      //          ActionBar.LayoutParams.MATCH_PARENT);
+        //  android.support.v7.app.ActionBar.LayoutParams layoutParams = new  android.support.v7.app.ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
+        //          ActionBar.LayoutParams.MATCH_PARENT);
         //layoutParams.gravity = Gravity.CENTER_HORIZONTAL|Gravity.CENTER_HORIZONTAL;
         //actionBar.setCustomView(actionBarLayout, layoutParams);
 
         try {
             findViewById(R.id.starterAB).setVisibility(View.GONE);
             findViewById(R.id.textAB).setVisibility(View.VISIBLE);
-            final LinearLayout actionBarLayout = (LinearLayout)findViewById(R.id.textAB);
-            TextView tv = (TextView)actionBarLayout.findViewById(R.id.statusText);
+            final LinearLayout actionBarLayout = (LinearLayout) findViewById(R.id.textAB);
+            TextView tv = (TextView) actionBarLayout.findViewById(R.id.statusText);
             tv.setText(text);
-            ImageButton bt = (ImageButton)actionBarLayout.findViewById(R.id.backButton);
+            ImageButton bt = (ImageButton) actionBarLayout.findViewById(R.id.backButton);
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -439,7 +402,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 }
             });
 
-            ImageButton bt2 = (ImageButton)actionBarLayout.findViewById(R.id.menu_btn);
+            ImageButton bt2 = (ImageButton) actionBarLayout.findViewById(R.id.menu_btn);
             bt2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -449,8 +412,8 @@ public class BaseLogisticActivity extends ActionBarActivity {
                         myDrawerLayout.openDrawer(Gravity.RIGHT);
                 }
             });
-            bt4 = (ImageButton)actionBarLayout.findViewById(R.id.save_btn);
-            bt3 = (ImageButton)actionBarLayout.findViewById(R.id.fave_btn);
+            bt4 = (ImageButton) actionBarLayout.findViewById(R.id.save_btn);
+            bt3 = (ImageButton) actionBarLayout.findViewById(R.id.fave_btn);
             if (BaseLogisticActivity.this instanceof NewSearchActivity) {
                 bt3.setVisibility(View.VISIBLE);
             } else {
@@ -492,19 +455,20 @@ public class BaseLogisticActivity extends ActionBarActivity {
     protected void setParams() {
         mProgressView = findViewById(R.id.disableLayout);
         mProgressView.setAlpha(1);
-        Button an0 = (Button)findViewById(R.id.angry_btn0); //нижняя кнопка home
-        Button an1 = (Button)findViewById(R.id.angry_btn); //нижняя кнопка перехода к пушам
-      //  Button an2 = (Button)findViewById(R.id.angry_btn2);
-        Button an3 = (Button)findViewById(R.id.angry_btn3); //нижняя кнопка расширенного поиска
+        Button an0 = (Button) findViewById(R.id.angry_btn0); //нижняя кнопка home
+        Button an1 = (Button) findViewById(R.id.angry_btn); //нижняя кнопка перехода к пушам
+        //  Button an2 = (Button)findViewById(R.id.angry_btn2);
+        Button an3 = (Button) findViewById(R.id.angry_btn3); //нижняя кнопка расширенного поиска
         an0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (BaseLogisticActivity.this instanceof MainActivity) {
-                    ((MainActivity)BaseLogisticActivity.this).setRootNodes();
+                    ((MainActivity) BaseLogisticActivity.this).setRootNodes();
                     return;
                 }
 
                 Intent intent = new Intent(BaseLogisticActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }
@@ -512,7 +476,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         an3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity)BaseLogisticActivity.this).checkChanges()) {
+                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity) BaseLogisticActivity.this).checkChanges()) {
                     return;
                 }
                 if (BaseLogisticActivity.this instanceof NewSearchActivity) {
@@ -528,15 +492,19 @@ public class BaseLogisticActivity extends ActionBarActivity {
                     }
                 }
                 Intent intent = new Intent(BaseLogisticActivity.this, NewSearchActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 startActivity(intent);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 if (finishAfterClick)
-                    BaseLogisticActivity.this.finish();
+                    finish();
+
             }
         });
         an1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity)BaseLogisticActivity.this).checkChanges()) {
+                if (BaseLogisticActivity.this instanceof SettingsActivity && ((SettingsActivity) BaseLogisticActivity.this).checkChanges()) {
                     return;
                 }
                 if (BaseLogisticActivity.this instanceof MyActivity) {
@@ -552,9 +520,11 @@ public class BaseLogisticActivity extends ActionBarActivity {
                     }
                 }
                 Intent intent = new Intent(BaseLogisticActivity.this, MyActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 if (finishAfterClick)
-                    BaseLogisticActivity.this.finish();
+                    //BaseLogisticActivity.this.finish();
+                finish();
             }
         });
         myDrawerLayer = (NavigationView) findViewById(R.id.left_drawer);
@@ -563,11 +533,11 @@ public class BaseLogisticActivity extends ActionBarActivity {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
-       // int newWidth=4*width/5;
-       // DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) myDrawerLayer.getLayoutParams();
-       // params.width = newWidth;
-       // myDrawerLayer.;
-        adapter = new TreeListViewAdapter(this, R.layout.tree_node_item,  nodes);
+        // int newWidth=4*width/5;
+        // DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) myDrawerLayer.getLayoutParams();
+        // params.width = newWidth;
+        // myDrawerLayer.;
+        adapter = new TreeListViewAdapter(this, R.layout.tree_node_item, nodes);
         myDrawerList.setAdapter(adapter);
         myDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -609,21 +579,21 @@ public class BaseLogisticActivity extends ActionBarActivity {
         }*/
 
         ItemNode declarationNode2 = new ItemNode(6, "Декларации", null, R.drawable.nd_declarations, nodes, "declarations", R.drawable.declarations_back);
-        ItemNode declarationNode3 = new ItemNode(6, "Таможенные декларации", declarationNode2, R.drawable.nd_declarations, nodes, "declarations", R.drawable.declarations_back);
-        ItemNode declarationTransit = new ItemNode(6, "Транзитные декларации", declarationNode2, R.drawable.nd_declarations, nodes, "declarations", R.drawable.declarations_back);
+        //ItemNode declarationNode3 = new ItemNode(6, "Таможенные декларации", declarationNode2, R.drawable.nd_declarations, nodes, "declarations",-1);
+        //ItemNode declarationTransit = new ItemNode(6, "Транзитные декларации", declarationNode2, R.drawable.nd_declarations, nodes, "declarations",-1);
 
-        ItemNode transitCurNode = new ItemNode(6, "Текущий месяц", declarationTransit, R.drawable.nd_declarations, nodes, "transit_cur", R.drawable.declarations_back);
-        ItemNode transitArchNode = new ItemNode(6, "Архив", declarationTransit, R.drawable.nd_declarations, nodes, "transit_arch", R.drawable.declarations_back);
+        //ItemNode transitCurNode = new ItemNode(6, "Текущий месяц", declarationTransit, R.drawable.nd_declarations, nodes, "transit_cur", -1);
+        //ItemNode transitArchNode = new ItemNode(6, "Архив", declarationTransit, R.drawable.nd_declarations, nodes, "transit_arch", -1);
 
-        if (ApplicationParameters.isCanavara)
-            setDeclarationStatuses2(declarationNode3);
-        else
+        //if (ApplicationParameters.isCanavara)
+          //  setDeclarationStatuses2(declarationNode3);
+       // else
             setDeclarationStatuses(declarationNode2);
 
 
-        ItemNode declarationNum2 = new ItemNode(11, "Найти по номеру", declarationNode3, R.drawable.circle, nodes, "num_dec", -1);
+        //ItemNode declarationNum2 = new ItemNode(11, "Найти по номеру", declarationNode3, R.drawable.circle, nodes, "num_dec", -1);
 
-        ItemNode declarationSearch2 = new ItemNode(11, "Расширенный поиск", declarationNode3, R.drawable.circle, nodes, "search_dec", -1);
+        //ItemNode declarationSearch2 = new ItemNode(11, "Расширенный поиск", declarationNode3, R.drawable.circle, nodes, "search_dec", -1);
 
         if (ApplicationParameters.group_id != 2) {
             ItemNode dictNode = new ItemNode(6, "Справочники", null, R.drawable.nd_dicts, nodes, "dictionaries", R.drawable.dictionaries);
@@ -642,14 +612,16 @@ public class BaseLogisticActivity extends ActionBarActivity {
         setBookmarks(15, bookmarksNode);
         ItemNode settingsNode = new ItemNode(false, true, 0, "Настройки", null, R.drawable.nd_settings, nodes, "settings", R.drawable.options);
         ItemNode settingsContNode = new ItemNode(false, true, 0, "Грузы", settingsNode, R.drawable.nd_containers_settings, nodes, "cont_settings", -1);
-        ItemNode settingsDecNode = new ItemNode(false, true, 0, "Декларации", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
+        ItemNode settingsTable = new ItemNode(0, "Вид таблицы", settingsContNode, R.drawable.nd_table_view, nodes, "table_settings", -1);
+        ItemNode settingsSingle = new ItemNode(0, "Вид записи", settingsContNode, R.drawable.nd_single_view, nodes, "single_settings", -1);
+
        /* if (ApplicationParameters.isCanavara) {
             ItemNode settingsRepDecNode = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Отчеты проводящего", settingsNode, R.drawable.settings_white, nodes, "dec_settings");
             ItemNode settingsRepDecTable = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsRepDecNode, R.drawable.search_results_white, nodes, "rep_dec_table_settings");
             ItemNode settingsRepDecSingle = new ItemNode(17+ApplicationParameters.bookmarks.size(), "Вид записи", settingsRepDecNode, R.drawable.single_record_white, nodes, "rep_dec_single_settings");
         }*/
-        ItemNode settingsTable = new ItemNode(0, "Вид таблицы", settingsContNode, R.drawable.nd_table_view, nodes, "table_settings", -1);
-        ItemNode settingsSingle = new ItemNode(0, "Вид записи", settingsContNode, R.drawable.nd_single_view, nodes, "single_settings", -1);
+
+        ItemNode settingsDecNode = new ItemNode(false, true, 0, "Декларации", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
         ItemNode settingsDecTable = new ItemNode(0, "Вид таблицы", settingsDecNode, R.drawable.nd_table_view, nodes, "dec_table_settings", -1);
         ItemNode settingsDecSingle = new ItemNode(0, "Вид записи", settingsDecNode, R.drawable.nd_single_view, nodes, "dec_single_settings", -1);
         createReports(nodes);
@@ -661,6 +633,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         adapter.notifyDataSetChanged();
 
     }
+
     //статусы контейнеров зависят от клиента
     public void setContainerStatuses(ItemNode parent) {
         if (ApplicationParameters.current_statuses != null) {
@@ -690,7 +663,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 e.printStackTrace();
             }
             return;
-        } else if (ApplicationParameters.tl_current_statuses != null){
+        } else if (ApplicationParameters.tl_current_statuses != null) {
             //транслайновские
             try {
                 for (int j = 0; j < ApplicationParameters.tl_current_statuses.length(); j++) {
@@ -731,8 +704,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
     }
 
 
-
-   public void setDeclarationStatuses(ItemNode parent) {
+    public void setDeclarationStatuses(ItemNode parent) {
         if (ApplicationParameters.current_gtd_statuses != null && !ApplicationParameters.isCanavara) {
             //ТББ-шные
             try {
@@ -785,7 +757,8 @@ public class BaseLogisticActivity extends ActionBarActivity {
         if (ApplicationParameters.isCanavara) {
             //ТББ-шные
             try {
-                if (ApplicationParameters.canavara_gtd_statuses == null) ApplicationParameters.canavara_gtd_statuses = new JSONArray();
+                if (ApplicationParameters.canavara_gtd_statuses == null)
+                    ApplicationParameters.canavara_gtd_statuses = new JSONArray();
                 JSONObject obj2 = null;
                 for (int i = 0; i < ApplicationParameters.canavara_gtd_statuses.length(); i++) {
                     JSONObject obj = ApplicationParameters.canavara_gtd_statuses.getJSONObject(i);
@@ -838,7 +811,8 @@ public class BaseLogisticActivity extends ActionBarActivity {
         SharedPreferences historyPrefs = getSharedPreferences("UserPreference", 0);
         Gson gson = new Gson();
         String jsonH = historyPrefs.getString("bookmarks", "");
-        Type type = new TypeToken<ArrayList<Bookmark>>(){}.getType();
+        Type type = new TypeToken<ArrayList<Bookmark>>() {
+        }.getType();
         if (jsonH != "") {
             ApplicationParameters.bookmarks = gson.fromJson(jsonH, type);
         }
@@ -849,7 +823,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         nodes.clear();
         ItemNode refreshNode = new ItemNode(false, true, 0, "Обновить", null, R.drawable.nd_refresh, nodes, "refresh_request", -1);
 
-       // ItemNode declarationsNode = new ItemNode(0, "Декларации", null, R.drawable.declarations, nodes, "declarations");
+        // ItemNode declarationsNode = new ItemNode(0, "Декларации", null, R.drawable.declarations, nodes, "declarations");
         ItemNode containerNode = new ItemNode(1, "Грузы", null, R.drawable.nd_containers, nodes, "containers", R.drawable.containers);
         setContainerStatuses(containerNode);/*
         ItemNode containerWait = new ItemNode(2, "Ожидаемые", containerNode, R.drawable.clock, nodes, "wait");
@@ -878,21 +852,21 @@ public class BaseLogisticActivity extends ActionBarActivity {
             ItemNode payersNode = new ItemNode(13, "Наши фирмы", dictNode, R.drawable.nd_firms, nodes, "payer", -1);
         }
         ItemNode bookmarksNode = new ItemNode(14, "Закладки", null, R.drawable.nd_bookmarks, nodes, "bookmarks", R.drawable.favorites);
-       // ItemNode historyNode = new ItemNode(15, "История поиска", null, R.drawable.history, nodes, "history");
+        // ItemNode historyNode = new ItemNode(15, "История поиска", null, R.drawable.history, nodes, "history");
         ItemNode addBookmarksNode = new ItemNode(14, "Создать новую", bookmarksNode, R.drawable.circle, nodes, "add_bookmark", -1);
 
         setBookmarks(15, bookmarksNode);
-        ItemNode settingsNode = new ItemNode(false, true, 15+ApplicationParameters.bookmarks.size(), "Настройки", null, R.drawable.nd_settings, nodes, "settings", R.drawable.options);
-        ItemNode settingsContNode = new ItemNode(false, true, 16+ApplicationParameters.bookmarks.size(), "Грузы", settingsNode, R.drawable.nd_containers_settings, nodes, "cont_settings", -1);
-        ItemNode settingsDecNode = new ItemNode(false, true, 16+ApplicationParameters.bookmarks.size(), "Декларации", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
-        ItemNode settingsTable = new ItemNode(false, true, 16+ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsContNode, R.drawable.nd_table_view, nodes, "table_settings", -1);
-        ItemNode settingsSingle = new ItemNode(false, true, 17+ApplicationParameters.bookmarks.size(), "Вид записи", settingsContNode, R.drawable.nd_single_view, nodes, "single_settings", -1);
-        ItemNode settingsDecTable = new ItemNode(false, true, 16+ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsDecNode, R.drawable.nd_table_view, nodes, "dec_table_settings", -1);
-        ItemNode settingsDecSingle = new ItemNode(false, true, 17+ApplicationParameters.bookmarks.size(), "Вид записи", settingsDecNode, R.drawable.nd_single_view, nodes, "dec_single_settings", -1);
+        ItemNode settingsNode = new ItemNode(false, true, 15 + ApplicationParameters.bookmarks.size(), "Настройки", null, R.drawable.nd_settings, nodes, "settings", R.drawable.options);
+        ItemNode settingsContNode = new ItemNode(false, true, 16 + ApplicationParameters.bookmarks.size(), "Грузы", settingsNode, R.drawable.nd_containers_settings, nodes, "cont_settings", -1);
+        ItemNode settingsDecNode = new ItemNode(false, true, 16 + ApplicationParameters.bookmarks.size(), "Декларации", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
+        ItemNode settingsTable = new ItemNode(false, true, 16 + ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsContNode, R.drawable.nd_table_view, nodes, "table_settings", -1);
+        ItemNode settingsSingle = new ItemNode(false, true, 17 + ApplicationParameters.bookmarks.size(), "Вид записи", settingsContNode, R.drawable.nd_single_view, nodes, "single_settings", -1);
+        ItemNode settingsDecTable = new ItemNode(false, true, 16 + ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsDecNode, R.drawable.nd_table_view, nodes, "dec_table_settings", -1);
+        ItemNode settingsDecSingle = new ItemNode(false, true, 17 + ApplicationParameters.bookmarks.size(), "Вид записи", settingsDecNode, R.drawable.nd_single_view, nodes, "dec_single_settings", -1);
         if (ApplicationParameters.isCanavara) {
-            ItemNode settingsRepDecNode = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Отчеты проводящего", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
-            ItemNode settingsRepDecTable = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsRepDecNode, R.drawable.nd_table_view, nodes, "rep_dec_table_settings", -1);
-            ItemNode settingsRepDecSingle = new ItemNode(17+ApplicationParameters.bookmarks.size(), "Вид записи", settingsRepDecNode, R.drawable.nd_single_view, nodes, "rep_dec_single_settings", -1);
+            ItemNode settingsRepDecNode = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Отчеты проводящего", settingsNode, R.drawable.nd_declarations_settings, nodes, "dec_settings", -1);
+            ItemNode settingsRepDecTable = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsRepDecNode, R.drawable.nd_table_view, nodes, "rep_dec_table_settings", -1);
+            ItemNode settingsRepDecSingle = new ItemNode(17 + ApplicationParameters.bookmarks.size(), "Вид записи", settingsRepDecNode, R.drawable.nd_single_view, nodes, "rep_dec_single_settings", -1);
         }
         createReports(nodes);
         ItemNode aboutNode = new ItemNode(false, true, 0, "Обратная связь", null, R.drawable.nd_review, nodes, "review_set", -1);
@@ -918,16 +892,16 @@ public class BaseLogisticActivity extends ActionBarActivity {
             ItemNode node = new ItemNode(from + i, ApplicationParameters.bookmarks.get(i).getName(),
                     parent, R.drawable.circle, nodes,
                     "bookmark_entity",
-                    ApplicationParameters.bookmarks.get(i).getDescription(),(int)ApplicationParameters.bookmarks.get(i).getId(), -1);
+                    ApplicationParameters.bookmarks.get(i).getDescription(), (int) ApplicationParameters.bookmarks.get(i).getId(), -1);
             node.count = ApplicationParameters.bookmarks.get(i).count;
-            ItemNode settingsNode = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Настройки", node, R.drawable.circle, nodes, "bookmark_settings", -1);
+            ItemNode settingsNode = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Настройки", node, R.drawable.circle, nodes, "bookmark_settings", -1);
             settingsNode.isBookmark = true;
-            settingsNode.bookmarkID = (int)ApplicationParameters.bookmarks.get(i).getId();
-            ItemNode editNode = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Редактировать", node, R.drawable.circle, nodes, "edit_bookmark", -1);
-            ItemNode removeNode = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Удалить", node, R.drawable.circle, nodes, "remove_bookmark", -1);
+            settingsNode.bookmarkID = (int) ApplicationParameters.bookmarks.get(i).getId();
+            ItemNode editNode = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Редактировать", node, R.drawable.circle, nodes, "edit_bookmark", -1);
+            ItemNode removeNode = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Удалить", node, R.drawable.circle, nodes, "remove_bookmark", -1);
 
-            ItemNode settingsTable = new ItemNode(16+ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsNode, R.drawable.circle, nodes, "table_settings", -1);
-            ItemNode settingsSingle = new ItemNode(17+ApplicationParameters.bookmarks.size(), "Вид записи", settingsNode, R.drawable.circle, nodes, "single_settings", -1);
+            ItemNode settingsTable = new ItemNode(16 + ApplicationParameters.bookmarks.size(), "Вид таблицы", settingsNode, R.drawable.circle, nodes, "table_settings", -1);
+            ItemNode settingsSingle = new ItemNode(17 + ApplicationParameters.bookmarks.size(), "Вид записи", settingsNode, R.drawable.circle, nodes, "single_settings", -1);
         }
     }
 
@@ -974,7 +948,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         final String access_token = getPref("access_token");
         final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
         JSONParser parser = new JSONParser();
-        JSONObject obj = parser.getJSONFromUrl("http://"+ApplicationParameters.MAIN_DOMAIN +"/search", new HashMap<String, String>() {{
+        JSONObject obj = parser.getJSONFromUrl("http://" + ApplicationParameters.MAIN_DOMAIN + "/search", new HashMap<String, String>() {{
             put("access_token", access_token);
             put("hs", secure_token);
             put("filter_object", getJSONParameters(filter));
@@ -987,13 +961,12 @@ public class BaseLogisticActivity extends ActionBarActivity {
     }
 
 
-
     //поиск по декларациям - сам запрос
     public JSONObject checkServerCredentials2(final String type, final String num, final String offset) throws JSONException {
         final String access_token = getPref("access_token");
         final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
         JSONParser parser = new JSONParser();
-        JSONObject obj = parser.getJSONFromUrl("http://"+ApplicationParameters.MAIN_DOMAIN +"/declarations", new HashMap<String, String>() {{
+        JSONObject obj = parser.getJSONFromUrl("http://" + ApplicationParameters.MAIN_DOMAIN + "/declarations", new HashMap<String, String>() {{
             put("access_token", access_token);
             put("hs", secure_token);
             put("type", ApplicationParameters.chosenDeclarationType);
@@ -1041,8 +1014,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             showProgress(false);
             if (res == null) {
                 Toast.makeText(BaseLogisticActivity.this, "Ошибка соединения с сервером", Toast.LENGTH_LONG).show();
-            } else
-            if (res.has("error")) {
+            } else if (res.has("error")) {
                 try {
                     if (res.getString("error").equals("Results count is too big")) {
                         return;
@@ -1071,36 +1043,36 @@ public class BaseLogisticActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
                 Intent intent = new Intent(BaseLogisticActivity.this, SearchResults.class);
+                try {
+                    ApplicationParameters.lastResults = new JSONArray();
+                    ApplicationParameters.tempResults = new JSONArray();
+                    JSONArray tmp = new JSONArray(res.getString("result"));
+                    int isCustomBookmark = 1;
+                    int bookmarkID = -1;
                     try {
-                        ApplicationParameters.lastResults = new JSONArray();
-                        ApplicationParameters.tempResults = new JSONArray();
-                        JSONArray tmp = new JSONArray(res.getString("result"));
-                        int isCustomBookmark = 1;
-                        int bookmarkID = -1;
-                        try {
-                            isCustomBookmark = res.getString("is_custom_bookmark") == null ? 1 : 0;
-                            bookmarkID = res.getString("bookmark_id") != null ? Integer.parseInt(res.getString("bookmark_id")) : -1;
-                        } catch (Exception e) {
+                        isCustomBookmark = res.getString("is_custom_bookmark") == null ? 1 : 0;
+                        bookmarkID = res.getString("bookmark_id") != null ? Integer.parseInt(res.getString("bookmark_id")) : -1;
+                    } catch (Exception e) {
 
-                        }
-
-                        String order = "";
-                        if (bookmarkID > 0) {
-                            intent.putExtra("order", res.getString("fields_order"));
-                            intent.putExtra("bookmarkType", 1);
-                            intent.putExtra("bookmark_id", bookmarkID);
-                        }
-                        ApplicationParameters.currentLength = Integer.parseInt(res.getString("count"));
-                        ApplicationParameters.lastResults = tmp;
-                        for (int i = 0; i < tmp.length(); i++) {
-                            ApplicationParameters.tempResults.put(ApplicationParameters.lastResults.get(i));
-                        }
-                        ApplicationParameters.setTrafficDocuments(new JSONArray(res.getString("documents")));
-                        // intent.putExtra("json_results", arr.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                    startActivity(intent);
+
+                    String order = "";
+                    if (bookmarkID > 0) {
+                        intent.putExtra("order", res.getString("fields_order"));
+                        intent.putExtra("bookmarkType", 1);
+                        intent.putExtra("bookmark_id", bookmarkID);
+                    }
+                    ApplicationParameters.currentLength = Integer.parseInt(res.getString("count"));
+                    ApplicationParameters.lastResults = tmp;
+                    for (int i = 0; i < tmp.length(); i++) {
+                        ApplicationParameters.tempResults.put(ApplicationParameters.lastResults.get(i));
+                    }
+                    ApplicationParameters.setTrafficDocuments(new JSONArray(res.getString("documents")));
+                    // intent.putExtra("json_results", arr.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
 
                 //return true;
             }
@@ -1124,7 +1096,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 final String access_token = getPref("access_token");
                 final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
                 JSONParser parser = new JSONParser();
-                jsonObject = parser.getJSONFromUrl("http://"+ApplicationParameters.MAIN_DOMAIN +"/user/unregister", new HashMap<String, String>() {{
+                jsonObject = parser.getJSONFromUrl("http://" + ApplicationParameters.MAIN_DOMAIN + "/user/unregister", new HashMap<String, String>() {{
                     put("access_token", access_token);
                     put("hs", secure_token);
                 }}, getApplicationContext());
@@ -1168,14 +1140,14 @@ public class BaseLogisticActivity extends ActionBarActivity {
 
             }};
             JSONObject jsonObject = null;
-                final String access_token = getPref("access_token");
-                final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
-                JSONParser parser = new JSONParser();
-                jsonObject = parser.getJSONFromUrl("http://"+ApplicationParameters.MAIN_DOMAIN +"/search/bookmark_search", new HashMap<String, String>() {{
-                    put("access_token", access_token);
-                    put("hs", secure_token);
-                    put("bookmark_id", args[0]);
-                }}, getApplicationContext());
+            final String access_token = getPref("access_token");
+            final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
+            JSONParser parser = new JSONParser();
+            jsonObject = parser.getJSONFromUrl("http://" + ApplicationParameters.MAIN_DOMAIN + "/search/bookmark_search", new HashMap<String, String>() {{
+                put("access_token", access_token);
+                put("hs", secure_token);
+                put("bookmark_id", args[0]);
+            }}, getApplicationContext());
             return jsonObject;
         }
 
@@ -1184,9 +1156,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             showProgress(false);
             if (res == null) {
                 Toast.makeText(BaseLogisticActivity.this, "Ошибка соединения с сервером", Toast.LENGTH_LONG).show();
-            } else
-
-            if (res.has("error")) {
+            } else if (res.has("error")) {
                 try {
                     if (res.getString("error").equals("Results count is too big")) {
                         return;
@@ -1276,9 +1246,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             showProgress(false);
             if (res == null) {
                 Toast.makeText(BaseLogisticActivity.this, "Ошибка соединения с сервером", Toast.LENGTH_LONG).show();
-            } else
-
-            if (res.has("error")) {
+            } else if (res.has("error")) {
                 try {
                     if (res.getString("error").equals("Results count is too big")) {
                         return;
@@ -1370,9 +1338,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             showProgress(false);
             if (res == null) {
                 Toast.makeText(BaseLogisticActivity.this, "Ошибка соединения с сервером", Toast.LENGTH_LONG).show();
-            } else
-
-            if (res.has("error")) {
+            } else if (res.has("error")) {
                 try {
                     if (res.getString("error").equals("Results count is too big")) {
                         return;
@@ -1441,14 +1407,14 @@ public class BaseLogisticActivity extends ActionBarActivity {
 
             }};
             JSONObject jsonObject = null;
-                final String access_token = getPref("access_token");
-                final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
-                JSONParser parser = new JSONParser();
-                jsonObject = parser.getJSONFromUrl("http://"+ApplicationParameters.MAIN_DOMAIN +"/remove_bookmark", new HashMap<String, String>() {{
-                    put("access_token", access_token);
-                    put("hs", secure_token);
-                    put("bookmark_id", args[0]);
-                }}, getApplicationContext());
+            final String access_token = getPref("access_token");
+            final String secure_token = LoginActivity.encryptStringSHA512(access_token + LoginActivity.encryptStringSHA512(getPref("login") + getPref("password")).toUpperCase() + ApplicationParameters.CLIENT_SECRET);
+            JSONParser parser = new JSONParser();
+            jsonObject = parser.getJSONFromUrl("http://" + ApplicationParameters.MAIN_DOMAIN + "/remove_bookmark", new HashMap<String, String>() {{
+                put("access_token", access_token);
+                put("hs", secure_token);
+                put("bookmark_id", args[0]);
+            }}, getApplicationContext());
             return jsonObject;
         }
 
@@ -1513,6 +1479,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
     }
 
     public View mProgressView;
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -1527,8 +1494,8 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 public void onAnimationEnd(Animator animation) {
                     mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
                     if (show)
-                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     else
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 }
@@ -1557,14 +1524,12 @@ public class BaseLogisticActivity extends ActionBarActivity {
         }
         if (node.key.equals("authorize")) {
             authorize();
-        } else
-        if (node.key.equals("refresh_request")) {
+        } else if (node.key.equals("refresh_request")) {
             if (BaseLogisticActivity.this instanceof MainActivity) {
                 ApplicationParameters.cached = false;
             }
             refreshRequest();
-        } else
-        if (node.key.equals("review")) {
+        } else if (node.key.equals("review")) {
             review();
         } else if (node.key.equals("contacts")) {
             if (BaseLogisticActivity.this instanceof ContactsActivity) {
@@ -1580,8 +1545,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 Intent intent = new Intent(BaseLogisticActivity.this, GroupReportActivity.class);
                 startActivity(intent);
             }
-        } else
-        if (node.key.equals("clients")) {
+        } else if (node.key.equals("clients")) {
             Intent intent = new Intent(BaseLogisticActivity.this, ClientsActivity.class);
             intent.putExtra("adapterType", "LIST_CLIENT");
             startActivity(intent);
@@ -1622,26 +1586,23 @@ public class BaseLogisticActivity extends ActionBarActivity {
             (new CheckToken3()).execute(node.key);
         } else if (node.key.equals("archive_dec")) {
             showProgress(true);
-            if (ApplicationParameters.isCanavara){
+            if (ApplicationParameters.isCanavara) {
                 (new CheckToken4()).execute("arc");
-            }
-            else {
+            } else {
                 (new CheckToken3()).execute("arc");
             }
         } else if (node.key.equals("all_dec")) {
             showProgress(true);
-            if (ApplicationParameters.isCanavara){
+            if (ApplicationParameters.isCanavara) {
                 (new CheckToken4()).execute("all");
-            }
-            else {
+            } else {
                 (new CheckToken3()).execute("all");
             }
         } else if (node.key.equals("last_month_dec")) {
             showProgress(true);
-            if (ApplicationParameters.isCanavara){
+            if (ApplicationParameters.isCanavara) {
                 (new CheckToken4()).execute("last");
-            }
-            else {
+            } else {
                 (new CheckToken3()).execute("last");
             }
         } else if (node.key.equals("table_settings")) {
@@ -1655,8 +1616,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             startSettings(6);
         } else if (node.key.equals("dec_single_settings")) {
             startSettings(7);
-        }
-        else if (node.key.equals("rep_dec_table_settings")) {
+        } else if (node.key.equals("rep_dec_table_settings")) {
             startSettings(8);
         } else if (node.key.equals("rep_dec_single_settings")) {
             startSettings(9);
@@ -1671,10 +1631,9 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 startSettings(2);
         } else if (node.key.equals("cur_month_dec")) {
             showProgress(true);
-            if (ApplicationParameters.isCanavara){
+            if (ApplicationParameters.isCanavara) {
                 (new CheckToken4()).execute("cur");
-            }
-            else {
+            } else {
                 (new CheckToken3()).execute("cur");
             }
         } else if (node.key.equals("add_bookmark")) {
@@ -1711,10 +1670,9 @@ public class BaseLogisticActivity extends ActionBarActivity {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             try {
                                 String value = input.getText().toString();
-                                if (ApplicationParameters.isCanavara){
+                                if (ApplicationParameters.isCanavara) {
                                     (new CheckToken4()).execute("num", value);
-                                }
-                                else {
+                                } else {
                                     (new CheckToken3()).execute("num", value);
                                 }
                             } catch (Exception e) {
@@ -1763,7 +1721,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
             myDrawerList.setSelection(position);
             if (node.getChildNodes().size() == 0) {
                 nodeAction(node);
-               // myDrawerLayer.closeNavigationDrawer();
+                // myDrawerLayer.closeNavigationDrawer();
                 myDrawerLayout.closeDrawer(myDrawerLayer);
             }
             //           displayView(position);
@@ -1774,7 +1732,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             //pushes.add(new PushItem(intent.getStringExtra("date"), intent.getStringExtra("title"), intent.getStringExtra("description")));
-            TextView tv = (TextView)BaseLogisticActivity.this.findViewById(R.id.counter);
+            TextView tv = (TextView) BaseLogisticActivity.this.findViewById(R.id.counter);
             SharedPreferences unread = getSharedPreferences("UserPreference", 0);
             int unread_count = unread.getInt("unread", 0);
             tv.setText(Integer.toString(unread_count));
@@ -1869,7 +1827,7 @@ public class BaseLogisticActivity extends ActionBarActivity {
                 else
                     startSettings(1);
             }
-            if  (BaseLogisticActivity.this instanceof ViewPagerSearchActivity) {
+            if (BaseLogisticActivity.this instanceof ViewPagerSearchActivity) {
                 int bid = ((ViewPagerSearchActivity) BaseLogisticActivity.this).bookmarkID;
                 if (bid > 0)
                     if (((ViewPagerSearchActivity) BaseLogisticActivity.this).bookmarkType == 1) {
@@ -1884,21 +1842,23 @@ public class BaseLogisticActivity extends ActionBarActivity {
             if (BaseLogisticActivity.this instanceof BaseSearchResults) {
                 startSettings(6);
             }
-            if  (BaseLogisticActivity.this instanceof BaseViewPagerSearchActivity) {
+            if (BaseLogisticActivity.this instanceof BaseViewPagerSearchActivity) {
                 startSettings(7);
             }
 
             if (BaseLogisticActivity.this instanceof BaseReportsSearchResults) {
                 startSettings(8);
             }
-            if  (BaseLogisticActivity.this instanceof BaseReportsViewPagerSearchActivity) {
+            if (BaseLogisticActivity.this instanceof BaseReportsViewPagerSearchActivity) {
                 startSettings(9);
             }
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     String SENDER_ID = "665149531559";
+
     public void logout() {
         final SharedPreferences prefs = getSharedPreferences("GCM_prefs", 0);
         SharedPreferences.Editor editor = prefs.edit();

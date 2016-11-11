@@ -34,36 +34,32 @@
      To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
      option is required to comply with the Google+ Sign-In developer policies
     -->
-
     <application
         android:allowBackup="true"
-        android:icon="@drawable/canavara0"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/tl2"
         android:label="@string/app_name"
-        android:logo="@drawable/canavara0"
+        android:largeHeap="true"
+        android:logo="@drawable/tl2"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="AA_DB_NAME" android:value="Logistic.db" />
-        <meta-data android:name="AA_DB_VERSION" android:value="1" />
-        <meta-data android:name="AA_MODELS"
-            android:value="
-            com.logistictbb.paperrose.mttp.newversion.db.models.Bookmark,
-            com.logistictbb.paperrose.mttp.newversion.db.models.DbTables,
-            com.logistictbb.paperrose.mttp.newversion.db.models.DocNomenclatures,
-            com.logistictbb.paperrose.mttp.newversion.db.models.Filter,
-            com.logistictbb.paperrose.mttp.newversion.db.models.MenuNode,
-            com.logistictbb.paperrose.mttp.newversion.db.models.TableField,
-            com.logistictbb.paperrose.mttp.newversion.db.models.UserOptions
-        " />
-
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="Logistic.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="             com.logistictbb.paperrose.mttp.newversion.db.models.Bookmark,             com.logistictbb.paperrose.mttp.newversion.db.models.DbTables,             com.logistictbb.paperrose.mttp.newversion.db.models.DocNomenclatures,             com.logistictbb.paperrose.mttp.newversion.db.models.Filter,             com.logistictbb.paperrose.mttp.newversion.db.models.MenuNode,             com.logistictbb.paperrose.mttp.newversion.db.models.TableField,             com.logistictbb.paperrose.mttp.newversion.db.models.UserOptions         " />
 
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.pushes.MyActivity"
+            android:name=".oldversion.pushes.MyActivity"
             android:label="Сообщения"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
 
         <receiver
-            android:name="com.logistic.paperrose.mttp.oldversion.pushes.GCMBroadcastReceiver"
+            android:name=".oldversion.pushes.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -74,23 +70,19 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.logistic.paperrose.mttp.oldversion.pushes.GCMIntentService" />
+        <service android:name=".oldversion.pushes.GCMIntentService" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.logistic.paperrose.mttp.newversion.views.main.MainActivity"
+            android:name=".newversion.views.main.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme">
-
-        </activity>
-
-
+            android:theme="@style/CustomActionBarTheme"></activity>
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.MainActivity"
+            android:name=".oldversion.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme">
@@ -101,48 +93,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.ChooseRecordActivity"
+            android:name=".oldversion.ChooseRecordActivity"
             android:label="Загрузка документа"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.LoginActivity"
+            android:name=".oldversion.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.settings.PushSettingsActivity"
+            android:name=".oldversion.settings.PushSettingsActivity"
             android:label="@string/title_activity_push_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.settings.BookmarkSettingsActivity"
+            android:name=".oldversion.settings.BookmarkSettingsActivity"
             android:label="@string/title_activity_push_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.settings.PushSettingsActivityVer2"
+            android:name=".oldversion.settings.PushSettingsActivityVer2"
             android:label="@string/title_activity_push_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.contacts.ContactsActivity"
+            android:name=".oldversion.contacts.ContactsActivity"
             android:label="@string/title_activity_contacts"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.clients.ClientsActivity"
+            android:name=".oldversion.clients.ClientsActivity"
             android:label="@string/title_activity_clients"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.search.SearchActivity"
+            android:name=".oldversion.search.SearchActivity"
             android:label="@string/title_activity_search"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.newsearch.NewSearchActivity"
+            android:name=".oldversion.newsearch.NewSearchActivity"
             android:label="Расширенный поиск"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme">
@@ -169,7 +161,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.newsearch.BaseNewSearchActivity"
+            android:name=".oldversion.newsearch.BaseNewSearchActivity"
             android:label="Поиск деклараций"
             android:screenOrientation="portrait"
             android:theme="@style/CustomActionBarTheme">
@@ -196,75 +188,82 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.SearchResults"
+            android:name=".oldversion.results.SearchResults"
             android:label="Грузы"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.BaseViewPagerSearchActivity"
-            android:label="Декларации"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
-        <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.BaseSearchResults"
+            android:name=".oldversion.results.BaseViewPagerSearchActivity"
             android:label="Декларации"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.BaseReportsViewPagerSearchActivity"
+            android:name=".oldversion.results.BaseSearchResults"
+            android:label="Декларации"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".oldversion.results.BaseReportsViewPagerSearchActivity"
             android:label="Отчеты проводящего"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.BaseReportsSearchResults"
+            android:name=".oldversion.results.BaseReportsSearchResults"
             android:label="Отчеты проводящего"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.ViewPagerSearchActivity"
+            android:name=".oldversion.results.ViewPagerSearchActivity"
             android:label="Грузы"
-            android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.dictionaries.DictViewPagerSearchActivity"
+            android:name=".oldversion.dictionaries.DictViewPagerSearchActivity"
             android:label="Результаты поиска"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.BaseLogisticActivity"
+            android:name=".oldversion.BaseLogisticActivity"
             android:label="@string/title_activity_base_logistic"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.DownloadDocuments"
+            android:name=".oldversion.results.DownloadDocuments"
             android:label="@string/title_activity_download_documents"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.EDDocs"
+            android:name=".oldversion.results.EDDocs"
             android:label="События ЭД"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.results.PhotoActivity"
+            android:name=".oldversion.results.PhotoActivity"
             android:label="@string/title_activity_photo"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.SettingsActivity"
+            android:name=".oldversion.SettingsActivity"
             android:label="@string/title_activity_test"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.reports.GroupReportActivity"
+            android:name=".oldversion.reports.GroupReportActivity"
             android:label="@string/title_activity_group_report"
-            android:theme="@style/CustomActionBarTheme"></activity>
+            android:theme="@style/CustomActionBarTheme" />
         <activity
-            android:name="com.logistic.paperrose.mttp.oldversion.FullReportActivity"
-            android:label="@string/title_activity_full_report"></activity>
-
+            android:name=".oldversion.FullReportActivity"
+            android:label="@string/title_activity_full_report" />
+        <activity
+            android:name=".oldversion.editors.DeclarationEditor"
+            android:label="@string/title_activity_declaration_editor"
+            android:parentActivityName=".oldversion.results.BaseSearchResults">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logistic.paperrose.mttp.oldversion.results.BaseSearchResults" />
+        </activity>
     </application>
 
 </manifest>
