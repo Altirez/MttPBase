@@ -745,7 +745,9 @@ public class BaseViewPagerSearchActivity extends BaseLogisticActivity {
                                         Button bt = (Button) pages.get(viewPager.getCurrentItem()).findViewById(R.id.saveChangesButton);
                                         bt.setVisibility(View.VISIBLE);
                                         ArrayList<TripleTableField> obs = adapters.get(viewPager.getCurrentItem()).objects;
+
                                         TripleTableField changed = obs.get(info.position);
+                                        adapters.get(viewPager.getCurrentItem()).filteredItems.set(info.position, new TripleTableField(changed.getName(), value.toString(), changed.getType()));
                                         obs.set(info.position, new TripleTableField(changed.getName(), value.toString(), changed.getType()));
                                         adapters.get(viewPager.getCurrentItem()).isChanged(true);
                                         adapters.get(viewPager.getCurrentItem()).notifyDataSetChanged();

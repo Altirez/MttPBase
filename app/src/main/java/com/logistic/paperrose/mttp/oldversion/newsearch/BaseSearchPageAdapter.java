@@ -108,7 +108,7 @@ public class BaseSearchPageAdapter extends ColoredArrayAdapter<TripleTableField>
         return mFilter;
     }
 
-    private ArrayList<TripleTableField> filteredItems = null;
+    public ArrayList<TripleTableField> filteredItems = null;
     private class ItemFilter extends Filter {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
